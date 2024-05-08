@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+E:/ClasesRemplazo/scan/build/CMakeFiles/bootloader
+E:/ClasesRemplazo/scan/build/CMakeFiles/bootloader.rule
+E:/ClasesRemplazo/scan/build/CMakeFiles/bootloader-complete.rule
+E:/ClasesRemplazo/scan/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+E:/ClasesRemplazo/scan/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+E:/ClasesRemplazo/scan/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+E:/ClasesRemplazo/scan/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
+E:/ClasesRemplazo/scan/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+E:/ClasesRemplazo/scan/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+E:/ClasesRemplazo/scan/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
