@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LED Dashboard</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body>
+        <h1>LED Dashboard</h1>
+
+        <table>
+            <tr class="text-center">
+                <td>
+                    <button
+                        id="led-1-toggle"
+                        type="button"
+                        class="btn btn-secondary"
+                    >
+                        LED 1
+                    </button>
+                </td>
+                <td>
+                    <button
+                        id="led-2-toggle"
+                        type="button"
+                        class="btn btn-secondary"
+                    >
+                        LED 2
+                    </button>
+                </td>
+                <td>
+                    <button
+                        id="led-3-toggle"
+                        type="button"
+                        class="btn btn-secondary"
+                    >
+                        LED 3
+                    </button>
+                </td>
+                <td>
+                    <button
+                        id="led-4-toggle"
+                        type="button"
+                        class="btn btn-secondary"
+                    >
+                        LED 4
+                    </button>
+                </td>
+            </tr>
+            <tr class="text-center">
+                <td>
+                    <div id="led-1-status" class="badge bg-danger">OFF</div>
+                </td>
+                <td>
+                    <div id="led-2-status" class="badge bg-danger">OFF</div>
+                </td>
+                <td>
+                    <div id="led-3-status" class="badge bg-danger">OFF</div>
+                </td>
+                <td>
+                    <div id="led-4-status" class="badge bg-danger">OFF</div>
+                </td>
+            </tr>
+        </table>
+
+        <script>
+            var led1Toggle = document.getElementById("led-1-toggle");
+            led1Toggle.addEventListener("click", function () {
+                toggleLed(1);
+            });
+            var led2Toggle = document.getElementById("led-2-toggle");
+            led2Toggle.addEventListener("click", function () {
+                toggleLed(2);
+            });
+            var led3Toggle = document.getElementById("led-3-toggle");
+            led3Toggle.addEventListener("click", function () {
+                toggleLed(3);
+            });
+            var led4Toggle = document.getElementById("led-4-toggle");
+            led4Toggle.addEventListener("click", function () {
+                toggleLed(4);
+            });
+
+            var toggleLed = function (ledNumber) {
+                fetch("/led/" + ledNumber).then((response) => {
+                    response.text().then((status) => {
+                        var element = document.getElementById(
+                            "led-" + ledNumber + "-status"
+                        );
+                        if (status == "1") {
+                            element.innerText = "ON";
+                            element.className = "badge btn-success";
+                        } else {
+                            element.innerText = "OFF";
+                            element.className = "badge btn-danger";
+                        }
+                    });
+                });
+            };
+        </script>
+    </body>
+</html>

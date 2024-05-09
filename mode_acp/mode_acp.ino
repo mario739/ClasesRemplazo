@@ -1,3 +1,14 @@
+#include <WiFi.h>
+#include <WiFiAP.h>
+#include <WiFiClient.h>
+#include <WiFiGeneric.h>
+#include <WiFiMulti.h>
+#include <WiFiSTA.h>
+#include <WiFiScan.h>
+#include <WiFiServer.h>
+#include <WiFiType.h>
+#include <WiFiUdp.h>
+
 #include <WebServer.h>
 #include <WiFi.h>
 
@@ -12,8 +23,12 @@ int led_status2=0;
 int led_status3=0;
 int led_status4=0;
 
-const char* ssid     = "Mario Aguilar"; // Change this to your WiFi SSID
-const char* password = "MRAASMM1468"; // Change this to your WiFi password
+const char* ssid     = "Esp32"; // Change this to your WiFi SSID
+const char* password = "012345678"; // Change this to your WiFi password
+
+//IPAddress ip(192,168,4,22);
+//IPAddress gateway(192,168,4,9);
+//IPAddress subnet(255,255,255,0);
 
 WebServer server(80);
 
@@ -21,16 +36,26 @@ WebServer server(80);
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
+
+  //Creamos el punto de acceso
+  WiFi.softAP(ssid,password);
+  //WiFi.softAPConfig(ip, gateway, subnet);
+
+  IPAddress ip=WiFi.softAPIP();
+
   pinMode(LED1, OUTPUT);
   pinMode(LED2, OUTPUT);
   pinMode(LED3, OUTPUT);
   pinMode(LED4, OUTPUT);
+
   Serial.println();
   Serial.println("******************************************************");
-  Serial.print("Connecting to ");
+  Serial.println("nombre de la red:");
   Serial.println(ssid);
+  Serial.println("La ip es:");
+  Serial.println(ip);
 
-  WiFi.begin(ssid, password);
+  /*WiFi.begin(ssid, password);
 
   while (WiFi.status() != WL_CONNECTED) {
       delay(500);
@@ -40,7 +65,10 @@ void setup() {
   Serial.println("");
   Serial.println("WiFi connected");
   Serial.println("IP address: ");
-  Serial.println(WiFi.localIP());
+  Serial.println(WiFi.localIP());*/
+
+  Serial.print("Nombre de la red:");
+  Serial.print(ssid);
 
   server.on("/",resp_req); 
   server.on("/led/1",toggle_led1);
@@ -57,12 +85,6 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  /*digitalWrite(LEDROJO, HIGH);
-  Serial.println("LED ON");
-  delay(RETARDO);
-  digitalWrite(LEDROJO,LOW);
-  Serial.println("LED OFF");
-  delay(RETARDO);*/
   server.handleClient();
 }
 

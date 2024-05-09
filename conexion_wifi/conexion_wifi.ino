@@ -10,7 +10,7 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
   pinMode(LEDROJO, OUTPUT);
-  Serial.println();
+  /*Serial.println();
   Serial.println("******************************************************");
   Serial.print("Connecting to ");
   Serial.println(ssid);
@@ -25,7 +25,7 @@ void setup() {
   Serial.println("");
   Serial.println("WiFi connected");
   Serial.println("IP address: ");
-  Serial.println(WiFi.localIP());
+  Serial.println(WiFi.localIP());*/
 }
 
 void loop() {
